@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare release
+        run: echo "Preparing release package"
+
+      - name: Validate release
+        run: echo "Running release validation"
+
+      - name: Publish release
+        run: echo "Release publishing placeholder"
