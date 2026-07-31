@@ -1,0 +1,14 @@
+# Default ownership
+* @miz-app-builder
+
+# Documentation ownership
+/docs/ @miz-app-builder
+
+# Engineering ownership
+/engineering/ @miz-app-builder
+
+# Operations ownership
+/operations/ @miz-app-builder
+
+# Product ownership
+/product/ @miz-app-builder
