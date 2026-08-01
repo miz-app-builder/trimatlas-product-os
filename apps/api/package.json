@@ -1,0 +1,19 @@
+{
+  "name": "@trimatlas/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@trimatlas/auth": "0.1.0",
+    "@trimatlas/db": "0.1.0",
+    "@trimatlas/domain": "0.1.0"
+  }
+}

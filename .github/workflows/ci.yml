@@ -8,20 +8,47 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     name: Validate Project
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: trimatlas
+          POSTGRES_USER: trimatlas
+          POSTGRES_PASSWORD: trimatlas
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U trimatlas -d trimatlas"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup environment
-        run: echo "Environment setup placeholder"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
 
-      - name: Run validation
-        run: echo "Run tests and quality checks here"
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build verification
-        run: echo "Build verification placeholder"
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build

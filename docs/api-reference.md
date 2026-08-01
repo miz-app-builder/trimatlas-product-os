@@ -35,3 +35,8 @@ Each endpoint should define:
 ## Future Evolution
 
 API design should evolve with product capabilities and integration needs.
+
+
+## Canonical OpenAPI Contract
+
+The executable REST contract is maintained in `packages/api-contracts/openapi.yaml`. The current contract covers `/health`, `/ready`, and `/v1/me`; every future API route must update the OpenAPI source, route tests, and implementation together.

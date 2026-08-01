@@ -47,3 +47,39 @@ Follow:
 ## Continuous Improvement
 
 Development setup instructions should be updated as TrimAtlas Product OS tooling and workflows evolve.
+
+
+## Current Workspace Commands
+
+Install dependencies and run the executable backend bootstrap:
+
+```bash
+npm install
+npm run dev:api
+```
+
+Run validation checks:
+
+```bash
+npm run typecheck
+npm run test
+npm run build
+```
+
+Database migration commands are available after configuring `DATABASE_URL`:
+
+```bash
+npm run db:generate
+npm run db:migrate
+```
+
+
+## Docker Development Stack
+
+Run the local infrastructure stack with:
+
+```bash
+docker compose -f deployment/docker/docker-compose.yml up --build
+```
+
+This starts PostgreSQL, Redis, and the API service with development defaults from `.env.example`.
