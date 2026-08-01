@@ -25,3 +25,8 @@ This roadmap defines the planned evolution of TrimAtlas Product OS from a founda
 ## Future Direction
 
 TrimAtlas Product OS will continue evolving based on product needs, technical improvements, and user feedback.
+
+
+## Implementation Planning
+
+The prioritized enterprise implementation roadmap is maintained in [`docs/master-implementation-plan.md`](./master-implementation-plan.md). The repository audit that informed the roadmap is maintained in [`docs/audit-report.md`](./audit-report.md).

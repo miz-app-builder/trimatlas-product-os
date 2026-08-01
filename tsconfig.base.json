@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "ignoreDeprecations": "6.0",
+    "lib": ["ES2022", "DOM"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@trimatlas/domain": ["packages/domain/src/index.ts"],
+      "@trimatlas/auth": ["packages/auth/src/index.ts"],
+      "@trimatlas/db": ["packages/db/src/index.ts"]
+    }
+  }
+}

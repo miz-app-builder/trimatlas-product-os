@@ -1,0 +1,11 @@
+{
+  "name": "@trimatlas/api-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": ["openapi.yaml"],
+  "scripts": {
+    "build": "node -e \"require('fs').accessSync('openapi.yaml')\"",
+    "typecheck": "node -e \"require('fs').accessSync('openapi.yaml')\""
+  }
+}

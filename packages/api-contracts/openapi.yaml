@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: TrimAtlas Product OS API
+  version: 0.1.0
+  description: Tenant-scoped REST API contract for TrimAtlas Product OS.
+servers:
+  - url: http://localhost:4000
+security:
+  - bearerAuth: []
+paths:
+  /health:
+    get:
+      security: []
+      summary: Health check
+      responses:
+        '200':
+          description: API process is alive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+  /ready:
+    get:
+      security: []
+      summary: Readiness check
+      responses:
+        '200':
+          description: API dependencies are configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessResponse'
+  /v1/me:
+    get:
+      summary: Current authenticated session
+      responses:
+        '200':
+          description: Authenticated user session context
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data]
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SessionClaims'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    Unauthenticated:
+      description: Missing or invalid bearer token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Authenticated principal lacks the required permission
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status, service]
+      properties:
+        status:
+          type: string
+          const: ok
+        service:
+          type: string
+          const: trimatlas-api
+    ReadinessResponse:
+      type: object
+      required: [status, dependencies]
+      properties:
+        status:
+          type: string
+          const: ready
+        dependencies:
+          type: object
+          required: [database]
+          properties:
+            database:
+              type: string
+              const: configured
+    SessionClaims:
+      type: object
+      required: [sub, email, organizationId, role]
+      properties:
+        sub:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        organizationId:
+          type: string
+          format: uuid
+        role:
+          type: string
+          enum: [owner, admin, manager, member, viewer]
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+            message:
+              type: string

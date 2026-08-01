@@ -1,0 +1,1 @@
+{ "extends": "../../tsconfig.base.json", "compilerOptions": { "rootDir": "src", "outDir": "dist" }, "include": ["../../types/**/*.d.ts", "src/**/*.ts"], "references": [{ "path": "../../packages/domain" }, { "path": "../../packages/db" }, { "path": "../../packages/auth" }] , "exclude": ["src/**/*.test.ts"] }
